@@ -1,0 +1,48 @@
+//Bibliotecas
+#include <MPU6050_tockn.h> 
+#include <Wire.h>
+
+//Motores
+#define motorF 3
+#define motorT 4
+
+#define MPU_ADDR 0x68 //Endereço quando o pino A0 estiver no GND
+
+MPU6050 mpu (Wire);
+//Declaração de objetos
+float angX;
+float angY;
+float angZ;
+unsigned long controlTempo;
+
+
+void setup() {
+  Serial.begin(9600);
+  Wire.begin();
+  mpu.begin();
+  mpu.calcGyroOffsets(false); //Se quiser mostrar as informaçoes coloque true
+
+  pinMode(motorF, OUTPUT);
+  pinMode(motorT, OUTPUT);
+  
+}
+
+void loop() {
+  mpu.update();
+
+  //Amazena os dados enviados pelo giroscopio
+  angX = mpu.getAngleX();
+  angY = mpu.getAngleY();
+  angZ = mpu.getAngleZ();
+
+  digitalWrite(motorF, HIGH);
+  
+
+  if(angY >= -25){
+    digitalWrite(motorF, LOW);
+    digitalWrite(motorT, HIGH);
+  }else{
+    digitalWrite(motorF, HIGH);
+    
+ }
+}
