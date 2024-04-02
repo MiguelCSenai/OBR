@@ -1,0 +1,35 @@
+#define motorTrasA 51 //azul
+#define spdMotorA A1 //cinza
+
+#define motorFrenteB 38 //branco
+#define motorTrasB 39 //verde
+#define spdMotorB A14 //amarelo
+
+void setup() {
+  pinMode(motorFrenteA, OUTPUT);
+  pinMode(motorTrasA, OUTPUT);
+  pinMode(spdMotorA, OUTPUT);
+  
+  pinMode(motorFrenteB, OUTPUT);
+  pinMode(motorTrasB, OUTPUT);
+  pinMode(spdMotorB, OUTPUT);
+
+}
+
+void loop() {
+  delay(5000);
+  digitalWrite(motorFrenteA, HIGH);
+  digitalWrite(motorTrasA, LOW);
+  analogWrite(spdMotorA, 255);
+
+  delay(2000);
+
+  digitalWrite(motorFrenteA, LOW);   
+  digitalWrite(motorTrasA, HIGH);
+  analogWrite(spdMotorA, 110);
+
+
+  
+  
+
+}
