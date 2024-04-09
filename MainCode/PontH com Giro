@@ -1,0 +1,36 @@
+void setup() {
+  pinMode(motorFrenteA, OUTPUT);
+  pinMode(motorTrasA, OUTPUT);
+  pinMode(spdMotorA, OUTPUT);
+  
+  pinMode(motorFrenteB, OUTPUT);
+  pinMode(motorTrasB, OUTPUT);
+  pinMode(spdMotorB, OUTPUT);
+
+  Serial.begin(9600);
+  Wire.begin();
+  mpu.begin();
+  mpu.calcGyroOffsets(false); //Se quiser mostrar as informaçoes coloque true
+
+}
+
+void loop() {
+  mpu.update();
+
+  //Amazena os dados enviados pelo giroscopio
+  angX = mpu.getAngleX();
+  angY = mpu.getAngleY();
+  angZ = mpu.getAngleZ();
+  digitalWrite(motorFrenteA, HIGH);
+  if(angY > -25){
+    analogWrite(spdMotorA, 250);
+    
+  }else{
+    
+    analogWrite(spdMotorA, 13      0);
+    
+    }
+
+
+  
+  
